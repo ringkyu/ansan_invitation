@@ -83,8 +83,7 @@
     $('#greeting').innerHTML =
       `<p class="g-head reveal">${esc(g.heading)}</p>` +
       g.paragraphs.map(p => `<p class="g-p reveal">${esc(p)}</p>`).join('') +
-      `<p class="g-sign reveal" aria-label="${esc(g.signers.join(' · '))}">${g.signers.map(s => `<span>${esc(s)}</span>`).join('')}</p>` +
-      `<p class="g-contact reveal">문의 ${esc(g.inquiryOrg)}<br><a href="${telHref(g.inquiryTel)}">Tel. ${esc(g.inquiryTel)}</a></p>`;
+      `<p class="g-sign reveal" aria-label="${esc(g.signers.join(' · '))}">${g.signers.map(s => `<span>${esc(s)}</span>`).join('')}</p>`;
   })();
 
   /* ---------- 3. 행사 식순 ---------- */
