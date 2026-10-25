@@ -11,15 +11,21 @@ window.INVITATION = {
   /* ---------- 공유·미리보기 ---------- */
   share: {
     // 확정된 실제 배포 주소(https://…). 비어 있으면 '카카오톡 공유'·'주소 복사'는 안내 문구만 보여 줍니다.
-    shareUrl: '',
-    // 카카오톡 공유 대표이미지의 실제 https 주소 (예: shareUrl 기준 assets/og-image.jpg 의 절대 주소)
-    shareImageUrl: '',
-    // Kakao Developers 의 JavaScript 키 (허용 도메인에 배포 도메인 등록 필요). 비우면 휴대폰 공유창/주소 복사로 대체됩니다.
-    kakaoJsKey: '',
-    // Kakao Developers 메시지 템플릿 ID (선택). 비우면 기본 피드 카드로 보냅니다.
+    shareUrl: 'https://ringkyu.github.io/ansan_invitation/',
+    // 카카오톡 공유 대표이미지의 실제 https 주소
+    shareImageUrl: 'https://ringkyu.github.io/ansan_invitation/assets/og-image.jpg',
+    // Kakao Developers 의 JavaScript 키 (플랫폼 > Web 에 https://ringkyu.github.io 도메인 등록 필요)
+    kakaoJsKey: '091daab4a0edd47f29287f485eaa3038',
+    // 메시지 템플릿 ID — 넣으면 템플릿 기준으로 발송합니다(버튼도 템플릿에서 정한 대로 나옴).
+    // 비워 두면 아래 title/description/buttons 로 만든 기본 카드(버튼 최대 2개)를 보냅니다.
     kakaoTemplateId: '',
     title: '2026 안산시 대학SDGs포럼 초대장',
     description: '2026. 11. 11.(수) 14:00~16:30 · 안산대학교 성실관 WINGS홀',
+    // 공유 카드 버튼 (최대 2개). url 은 카카오 앱에 등록한 도메인이어야 합니다.
+    buttons: [
+      { title: '초대장 보기', url: 'https://ringkyu.github.io/ansan_invitation/' },
+      { title: '참가 신청하기', url: 'https://ringkyu.github.io/ansan_invitation/#apply' },
+    ],
   },
 
   /* ---------- 배경음악 ----------

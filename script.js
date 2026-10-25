@@ -240,7 +240,8 @@
           else Kakao.Share.sendDefault({
             objectType: 'feed',
             content: { title: S.title, description: S.description, imageUrl: S.shareImageUrl, link },
-            buttons: [{ title: '초대장 보기', link }],
+            buttons: ((S.buttons && S.buttons.length) ? S.buttons.slice(0, 2) : [{ title: '초대장 보기', url }])
+              .map(b => ({ title: b.title, link: { mobileWebUrl: b.url || url, webUrl: b.url || url } })),
           });
           return;
         } catch (e) { /* 아래 대체 공유로 */ }
