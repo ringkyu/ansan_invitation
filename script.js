@@ -141,9 +141,9 @@
   (() => {
     const lb = $('#lightbox'), img = $('#lbImg'), sc = $('#lbScroll');
     let opener = null;
-    const open = () => {
+    const open = (src, alt) => {
       opener = document.activeElement;
-      img.src = C.about.poster.full; img.alt = C.about.poster.alt;
+      img.src = src; img.alt = alt;
       sc.classList.remove('zoom'); sc.scrollTop = 0;
       lb.hidden = false; document.body.classList.add('lock');
       $('#lbClose').focus();
@@ -152,7 +152,8 @@
       lb.hidden = true; document.body.classList.remove('lock');
       if (opener && opener.focus) opener.focus();
     };
-    $('#posterBtn').addEventListener('click', open);
+    $('#posterBtn').addEventListener('click', () => open(C.about.poster.full, C.about.poster.alt));
+    document.addEventListener('click', e => { if (e.target.closest('#mapBtn')) open(C.location.mapImage, C.location.mapImageAlt); });
     $('#lbClose').addEventListener('click', close);
     sc.addEventListener('click', e => {
       if (e.target === img) sc.classList.toggle('zoom');
@@ -173,7 +174,7 @@
     $('#location').innerHTML = `
       <p class="place-name reveal">${esc(e.place)}${e.room ? ' ' + esc(e.room) : ''}</p>
       ${l.address ? `<p class="place-addr reveal">${esc(l.address)}</p>` : ''}
-      <div class="map-box reveal" id="mapBox"><iframe title="${esc(e.place)} 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=17&hl=ko&output=embed"></iframe></div>
+      <button type="button" class="map-box reveal" id="mapBtn" aria-label="캠퍼스 안내도 크게 보기"><img src="${esc(l.mapImage)}" alt="${esc(l.mapImageAlt)}" loading="lazy"></button>
       <div class="map-links reveal">
         <a class="btn" href="${esc(naver)}" target="_blank" rel="noopener">네이버지도</a>
         <a class="btn" href="${esc(kakao)}" target="_blank" rel="noopener">카카오맵</a>
