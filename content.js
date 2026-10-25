@@ -18,7 +18,7 @@ window.INVITATION = {
     kakaoJsKey: '091daab4a0edd47f29287f485eaa3038',
     // 메시지 템플릿 ID — 넣으면 템플릿 기준으로 발송합니다(버튼도 템플릿에서 정한 대로 나옴).
     // 비워 두면 아래 title/description/buttons 로 만든 기본 카드(버튼 최대 2개)를 보냅니다.
-    kakaoTemplateId: '',
+    kakaoTemplateId: '138374',
     title: '2026 안산시 대학SDGs포럼 초대장',
     description: '2026. 11. 11.(수) 14:00~16:30 · 안산대학교 성실관 WINGS홀',
     // 공유 카드 버튼 (최대 2개). url 은 카카오 앱(플랫폼 > Web)에 등록한 도메인이어야 합니다 (구글 폼은 https://docs.google.com 등록).
