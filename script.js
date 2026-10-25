@@ -88,17 +88,31 @@
   })();
 
   /* ---------- 3. 행사 식순 ---------- */
-  $('#program').innerHTML = C.program.map(b => `
-    <li class="p-block reveal">
-      <div class="p-head"><span class="p-time">${esc(b.time)}</span><span class="p-session">${esc(b.session)}</span></div>
-      <ul class="p-cards">${b.items.map(i => `
-        <li class="p-card">
-          <div class="p-org">${esc(i.org)}</div>
-          <div class="p-topic">${esc(i.topic)}</div>
-          ${i.speaker ? `<div class="p-speaker">${esc(i.speaker)}</div>` : ''}
-        </li>`).join('')}
-      </ul>
-    </li>`).join('');
+  (() => {
+    const names = C.sdgNames || {};
+    const sdgs = list => (list && list.length) ? `<ul class="p-sdgs" aria-label="연계 SDGs">${list.map(n =>
+      `<li><img src="assets/sdg/${n}.png" alt="SDG ${n} ${esc(names[n] || '')}" width="40" height="40" loading="lazy"></li>`).join('')}</ul>` : '';
+    const card = c => `
+      <li class="p-card">
+        <div class="p-org">${esc(c.org)}${c.tag ? `<span class="p-tag">${esc(c.tag)}</span>` : ''}</div>
+        <div class="p-topic">${esc(c.topic)}</div>
+        ${c.speaker ? `<div class="p-speaker">${esc(c.speaker)}</div>` : ''}
+        ${sdgs(c.sdgs)}
+      </li>`;
+    const row = r => `
+      <div class="p-row">
+        ${r.time ? `<div class="p-rtime">${esc(r.time)}</div>` : ''}
+        ${r.title ? `<div class="p-rtitle">${esc(r.title)}</div>` : ''}
+        ${r.roles ? `<ul class="p-roles">${r.roles.map(x => `<li><span>${esc(x.role)}</span>${esc(x.who)}</li>`).join('')}</ul>` : ''}
+        ${r.cards ? `<ul class="p-cards">${r.cards.map(card).join('')}</ul>` : ''}
+      </div>`;
+    const side = C.sideEvent ? `<li class="p-side reveal"><b>${esc(C.sideEvent.title)}</b><span>${esc(C.sideEvent.text)}</span></li>` : '';
+    $('#program').innerHTML = side + C.program.map(b => `
+      <li class="p-block reveal">
+        <div class="p-head"><span class="p-time">${esc(b.time)}</span><span class="p-session">${esc(b.session)}</span></div>
+        ${b.rows.map(row).join('')}
+      </li>`).join('');
+  })();
 
   /* ---------- 4. 참가신청 (외부 URL 연결만) ---------- */
   (() => {
@@ -116,7 +130,7 @@
       <div class="a-block reveal"><p class="a-label">${esc(a.purposeTitle)}</p><p class="a-text">${esc(a.purpose)}</p></div>
       <div class="a-block reveal"><p class="a-label">${esc(a.rotationTitle)}</p><p class="a-text">${esc(a.rotation)}</p></div>
       <div class="a-block reveal"><p class="a-label">${esc(a.universitiesTitle)}</p>
-        <ul class="univ-list">${a.universities.map(u => `<li><img src="${esc(u.logo)}" alt="${esc(u.name)}" loading="lazy"><span>${esc(u.name)}</span></li>`).join('')}</ul>
+        <ul class="univ-list">${a.universities.map(u => `<li><img src="${esc(u.logo)}" alt="${esc(u.name)}" loading="lazy"></li>`).join('')}</ul>
       </div>
       <div class="a-block reveal"><p class="a-label">포스터</p>
         <button type="button" class="poster-btn" id="posterBtn" aria-label="포스터 크게 보기"><img src="${esc(a.poster.thumb)}" alt="${esc(a.poster.alt)}" loading="lazy"></button>
@@ -154,20 +168,29 @@
     const naver = l.naverMapUrl || `https://map.naver.com/p/search/${q}`;
     const kakao = l.kakaoMapUrl || `https://map.kakao.com/link/search/${q}`;
     const tmap = l.tmapUrl || `https://tmap.life/search?name=${q}`;
-    const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
     const transport = (l.transport || []).map(t => `<dt>${esc(t.title)}</dt><dd>${esc(t.text)}</dd>`).join('')
       + (l.parking ? `<dt>주차</dt><dd>${esc(l.parking)}</dd>` : '');
+    const useNaver = l.naverClientId && l.lat !== '' && l.lng !== '';
     $('#location').innerHTML = `
-      <p class="place-name reveal">${esc(e.place)}${e.room ? '<br>' + esc(e.room) : ''}</p>
+      <p class="place-name reveal">${esc(e.place)}${e.room ? ' ' + esc(e.room) : ''}</p>
       ${l.address ? `<p class="place-addr reveal">${esc(l.address)}</p>` : ''}
-      <div class="map-card reveal">${pin}<b>${esc(e.place)}</b></div>
+      <div class="map-box reveal" id="mapBox">${useNaver ? '' : `<iframe title="${esc(e.place)} 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=17&hl=ko&output=embed"></iframe>`}</div>
       <div class="map-links reveal">
         <a class="btn" href="${esc(naver)}" target="_blank" rel="noopener">네이버지도</a>
         <a class="btn" href="${esc(kakao)}" target="_blank" rel="noopener">카카오맵</a>
         <a class="btn" href="${esc(tmap)}" target="_blank" rel="noopener">티맵</a>
       </div>
-      ${transport ? `<dl class="transport reveal">${transport}</dl>` : ''}
-      <a class="btn full tel-btn reveal" href="${telHref(C.greeting.inquiryTel)}">문의 전화 ${esc(C.greeting.inquiryTel)}</a>`;
+      ${transport ? `<dl class="transport reveal">${transport}</dl>` : ''}`;
+    if (useNaver) {
+      const sc = document.createElement('script');
+      sc.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(l.naverClientId)}`;
+      sc.onload = () => {
+        const pos = new naver.maps.LatLng(Number(l.lat), Number(l.lng));
+        const map = new naver.maps.Map('mapBox', { center: pos, zoom: 17, scaleControl: false, mapDataControl: false });
+        new naver.maps.Marker({ position: pos, map });
+      };
+      document.head.appendChild(sc);
+    }
   })();
 
   /* ---------- 7. 문의 · 주최/주관 ---------- */
