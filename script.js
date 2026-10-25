@@ -144,6 +144,8 @@
     const open = (src, alt) => {
       opener = document.activeElement;
       img.src = src; img.alt = alt;
+      const fit = () => sc.classList.toggle('land', img.naturalWidth > img.naturalHeight);
+      img.onload = fit; if (img.complete) fit();
       sc.classList.remove('zoom'); sc.scrollTop = 0;
       lb.hidden = false; document.body.classList.add('lock');
       $('#lbClose').focus();

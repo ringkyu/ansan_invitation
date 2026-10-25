@@ -236,7 +236,9 @@ button { font-family: inherit; }
 }
 .lb-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; padding: 64px 12px 12px; text-align: center; }
 .lb-scroll img { width: min(100%, 520px); height: auto; border-radius: 4px; cursor: zoom-in; background: #fff; }
+.lb-scroll.land img { width: min(100%, 1280px); }
 .lb-scroll.zoom img { width: 190%; max-width: none; cursor: zoom-out; }
+.lb-scroll.land.zoom img { width: min(190%, 2400px); }
 .lb-hint { text-align: center; color: rgba(255,255,255,.55); font-size: 12.5px; padding: 8px 0 calc(10px + env(safe-area-inset-bottom)); }
 
 /* ---------- 토스트 ---------- */
