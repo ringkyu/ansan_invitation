@@ -139,16 +139,11 @@ window.INVITATION = {
 
   /* ---------- 오시는 길 ----------
      주소·교통·주차는 확정 전이므로 비워 둡니다. 확정되면 값을 넣으면 해당 항목이 나타납니다.
-     지도: 네이버 지도는 외부 페이지 삽입이 막혀 있어 'Naver Maps JS API'가 필요합니다.
-       naverClientId(네이버 클라우드 플랫폼 Maps 인증 키)와 성실관 입구 좌표(lat, lng)를 모두 넣으면
-       네이버 지도가 표시됩니다. 비어 있으면 건물명 검색 기준의 임시 지도가 표시됩니다.
+     지도: 건물명(fallbackQuery) 기준으로 지도가 표시됩니다.
      지도 앱 버튼 3종은 성실관 입구 기준 확정 URL을 넣어 주세요(비우면 건물명 검색 링크). */
   location: {
     address: '',
     fallbackQuery: '안산대학교 성실관',
-    naverClientId: '',
-    lat: '',
-    lng: '',
     naverMapUrl: '',
     kakaoMapUrl: '',
     tmapUrl: '',

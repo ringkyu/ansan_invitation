@@ -170,27 +170,16 @@
     const tmap = l.tmapUrl || `https://tmap.life/search?name=${q}`;
     const transport = (l.transport || []).map(t => `<dt>${esc(t.title)}</dt><dd>${esc(t.text)}</dd>`).join('')
       + (l.parking ? `<dt>주차</dt><dd>${esc(l.parking)}</dd>` : '');
-    const useNaver = l.naverClientId && l.lat !== '' && l.lng !== '';
     $('#location').innerHTML = `
       <p class="place-name reveal">${esc(e.place)}${e.room ? ' ' + esc(e.room) : ''}</p>
       ${l.address ? `<p class="place-addr reveal">${esc(l.address)}</p>` : ''}
-      <div class="map-box reveal" id="mapBox">${useNaver ? '' : `<iframe title="${esc(e.place)} 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=17&hl=ko&output=embed"></iframe>`}</div>
+      <div class="map-box reveal" id="mapBox"><iframe title="${esc(e.place)} 지도" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${q}&z=17&hl=ko&output=embed"></iframe></div>
       <div class="map-links reveal">
         <a class="btn" href="${esc(naver)}" target="_blank" rel="noopener">네이버지도</a>
         <a class="btn" href="${esc(kakao)}" target="_blank" rel="noopener">카카오맵</a>
         <a class="btn" href="${esc(tmap)}" target="_blank" rel="noopener">티맵</a>
       </div>
       ${transport ? `<dl class="transport reveal">${transport}</dl>` : ''}`;
-    if (useNaver) {
-      const sc = document.createElement('script');
-      sc.src = `https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${encodeURIComponent(l.naverClientId)}`;
-      sc.onload = () => {
-        const pos = new naver.maps.LatLng(Number(l.lat), Number(l.lng));
-        const map = new naver.maps.Map('mapBox', { center: pos, zoom: 17, scaleControl: false, mapDataControl: false });
-        new naver.maps.Marker({ position: pos, map });
-      };
-      document.head.appendChild(sc);
-    }
   })();
 
   /* ---------- 7. 문의 · 주최/주관 ---------- */
