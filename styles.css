@@ -198,10 +198,10 @@ button { font-family: inherit; }
   display: block; width: 100%; margin-top: 12px; padding: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
   background: #fff; cursor: pointer; position: relative; -webkit-tap-highlight-color: transparent;
 }
-.poster-btn img { display: block; width: 100%; aspect-ratio: 1072 / 1964; object-fit: cover; object-position: top; max-height: 340px; }
+.poster-btn img { display: block; width: 100%; height: auto; }
 .poster-btn::after {
-  content: '포스터 크게 보기'; position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 0 14px;
-  background: linear-gradient(transparent, rgba(47,29,88,.88)); color: #fff; font-size: 15px; font-weight: 700; text-align: center;
+  content: '크게 보기'; position: absolute; right: 10px; bottom: 10px; padding: 6px 12px; border-radius: 999px;
+  background: rgba(47,29,88,.85); color: #fff; font-size: 13px; font-weight: 700;
 }
 
 /* ---------- 6. 오시는 길 ---------- */
