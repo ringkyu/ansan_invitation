@@ -21,10 +21,10 @@ window.INVITATION = {
     kakaoTemplateId: '',
     title: '2026 안산시 대학SDGs포럼 초대장',
     description: '2026. 11. 11.(수) 14:00~16:30 · 안산대학교 성실관 WINGS홀',
-    // 공유 카드 버튼 (최대 2개). url 은 카카오 앱에 등록한 도메인이어야 합니다.
+    // 공유 카드 버튼 (최대 2개). url 은 카카오 앱(플랫폼 > Web)에 등록한 도메인이어야 합니다 (구글 폼은 https://docs.google.com 등록).
     buttons: [
       { title: '초대장 보기', url: 'https://ringkyu.github.io/ansan_invitation/' },
-      { title: '참가 신청하기', url: 'https://ringkyu.github.io/ansan_invitation/#apply' },
+      { title: '참가 신청하기', url: 'https://docs.google.com/forms/d/e/1FAIpQLScluQ3ur_diLE_R2KoSTCvW_JBfm5LZ92sPjrAkVqlKyXptCg/viewform' },
     ],
   },
 
