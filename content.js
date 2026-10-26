@@ -155,7 +155,10 @@ window.INVITATION = {
     naverMapUrl: '',
     kakaoMapUrl: '',
     tmapUrl: '',
-    transport: [],   // 예: [{ title: '지하철', text: '…' }]  (확정 안내만)
+    transport: [
+      { title: '지하철', text: '4호선 상록수역 하차 → 2번 출구 건너편 안산대학교 셔틀버스 정류장 이용(무료, 상시 운영) → 안산대 성실관 하차' },
+      { title: '시내버스', text: '171번 이용 → 안산대 성실관 하차' },
+    ],
     parking: '',     // 예: '…'  (확정 안내만)
   },
 
