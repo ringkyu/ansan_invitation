@@ -170,7 +170,7 @@
     const naver = l.naverMapUrl || `https://map.naver.com/p/search/${q}`;
     const kakao = l.kakaoMapUrl || `https://map.kakao.com/link/search/${q}`;
     const tmap = l.tmapUrl || `https://tmap.life/search?name=${q}`;
-    const transport = (l.transport || []).map(t => `<dt>${esc(t.title)}</dt><dd>${esc(t.text)}</dd>`).join('')
+    const transport = (l.transport || []).map(t => `<dt>${esc(t.title)}</dt><dd>${esc(t.text).replace(/\n/g, '<br>')}</dd>`).join('')
       + (l.parking ? `<dt>주차</dt><dd>${esc(l.parking)}</dd>` : '');
     $('#location').innerHTML = `
       <p class="place-name reveal">${esc(e.place)}${e.room ? ' ' + esc(e.room) : ''}</p>
