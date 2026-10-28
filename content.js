@@ -52,6 +52,7 @@ window.INVITATION = {
 
   /* ---------- 모시는 글 (포스터 기준 · 줄바꿈만 화면 폭에 맞게 조정) ---------- */
   greeting: {
+    slogan: { img: 'assets/greeting-slogan.webp', alt: '대학과 지역이 함께 만드는 지속가능한 안산' },
     heading: '「2026 안산시 대학SDGs포럼」에 여러분을 초대합니다.',
     paragraphs: [
       '안산시와 관내 5개 대학이 함께하는 대학SDGs포럼이 올해 두 번째로 개최됩니다.',
@@ -60,21 +61,24 @@ window.INVITATION = {
       '여러분의 많은 관심과 참여를 바랍니다.',
     ],
     // 초청 명의 (포스터 기준 · 임의 인명·문구 추가 금지)
-    signers: ['안산대학교 총장 윤동열', '안산시지속가능발전협의회 대표회장 방군섭'],
+    signers: [
+      { logo: 'assets/logos/ansan-univ.png', org: '안산대학교', role: '총장', name: '윤동열' },
+      { logo: 'assets/logos/council.png', org: '안산시지속가능발전협의회', role: '대표회장', name: '방군섭' },
+    ],
     inquiryOrg: '안산시지속가능발전협의회',
     inquiryTel: '031-483-0221',
   },
 
   /* ---------- 행사 식순 (포스터 기준) ----------
-     14:35~14:50 은 포스터에 프로그램명이 없어 표시하지 않습니다.
+     14:40~14:50 은 포스터에 프로그램명이 없어 표시하지 않습니다.
      sdgs 는 assets/sdg/<번호>.png 아이콘 번호입니다. */
   sideEvent: { title: '부대행사', text: '자원순환 실천 서약, 폐건전지 수거함 만들기 체험 등' },
   program: [
     {
-      session: '오프닝 세션', time: '14:00~14:35',
+      session: '오프닝 세션', time: '14:00~14:40',
       rows: [
-        { time: '14:00~14:15', title: '개회식 · 축사 및 주요 내빈 소개' },
-        { time: '14:15~14:35', cards: [
+        { time: '14:00~14:20', title: '개회식 · 축사 및 주요 내빈 소개' },
+        { time: '14:20~14:40', cards: [
           { org: '안산대학교', tag: 'HOST', topic: '캠퍼스에서 지역으로, 지속가능한 변화를 연결하다',
             speaker: '정소영 교수 | 전략기획처장, 간호학과', sdgs: [7, 8, 11, 12, 13] },
         ] },

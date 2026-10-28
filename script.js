@@ -81,9 +81,10 @@
   (() => {
     const g = C.greeting;
     $('#greeting').innerHTML =
+      (g.slogan ? `<img class="g-slogan reveal" src="${esc(g.slogan.img)}" alt="${esc(g.slogan.alt)}">` : '') +
       `<p class="g-head reveal">${esc(g.heading)}</p>` +
       g.paragraphs.map(p => `<p class="g-p reveal">${esc(p)}</p>`).join('') +
-      `<p class="g-sign reveal" aria-label="${esc(g.signers.join(' · '))}">${g.signers.map(s => `<span>${esc(s)}</span>`).join('')}</p>`;
+      `<ul class="g-sign reveal">${g.signers.map(s => `<li><span class="g-logo"><img src="${esc(s.logo)}" alt="${esc(s.org)}"></span><span class="g-who"><span>${esc(s.org)}</span><span>${esc(s.role)} ${esc(s.name)}</span></span></li>`).join('')}</ul>`;
   })();
 
   /* ---------- 3. 행사 식순 ---------- */

@@ -138,6 +138,7 @@ button { font-family: inherit; }
 
 /* ---------- 2. 모시는 글 ---------- */
 .greeting { text-align: center; }
+.greeting .g-slogan { display: block; width: 100%; max-width: 360px; height: auto; margin: 0 auto 18px; mix-blend-mode: multiply; }
 .greeting .g-head {
   font-size: 18px; font-weight: 800; color: var(--purple); line-height: 1.6; letter-spacing: -.02em;
   margin-bottom: 30px; text-wrap: balance;
@@ -147,8 +148,11 @@ button { font-family: inherit; }
   font-size: 16px; line-height: 1.95; text-align: left; text-wrap: pretty; color: var(--ink);
 }
 .greeting p.g-p + p.g-p { margin-top: 22px; }
-.greeting .g-sign { margin-top: 44px; font-weight: 800; color: var(--purple); font-size: 16.5px; line-height: 1.75; }
-.greeting .g-sign span { display: block; }
+.greeting .g-sign { list-style: none; margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; font-weight: 800; color: var(--purple); font-size: 13.5px; line-height: 1.5; }
+.greeting .g-sign li { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.greeting .g-sign .g-logo { display: flex; align-items: center; justify-content: center; height: 34px; width: 100%; }
+.greeting .g-sign img { height: 34px; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.greeting .g-sign .g-who span { display: block; white-space: nowrap; }
 .greeting .g-contact { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); line-height: 1.8; }
 .greeting .g-contact a { color: var(--purple); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid var(--purple-soft); padding: 8px 0; }
 
